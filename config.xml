@@ -1,5 +1,8 @@
- 
-       <widget id="com.craftycuby" version="0.0.1">
+ <?xml version="1.0" encoding="UTF-8" ?>
+       <widget xmlns= "http://www.w3.org/ns/widgets" 
+       xmlns:gap = "http://phonegap.com/ns/1.0" 
+       id="com.craftycuby" 
+       version="0.0.1">
         <name>Crafty cuby</name>
         <description>
             Jeu de plateforme sur une idée de diamonds
@@ -9,13 +12,12 @@
         </author>
         <content src="index.html" />
         <access origin="*" />
-        <platform name="android">
-        <splash src="img/default.png" density="land-mdpi"/>
-        </platform>
         <icon src="img/icon-72.png" />
+        <platform name="android">
+        <gap:splash src="img/default.png" density="land-mdpi"/>
+        </platform>
         <preference name="Fullscreen" value="true" />
         <preference name="Orientation" value="landscape" />
-        <preference name="BackgroundColor" value="0xff0000ff"/>
         <preference name="SplashScreenDelay" value="20000" />
         
          
