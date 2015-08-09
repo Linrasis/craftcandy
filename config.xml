@@ -1,4 +1,4 @@
- <?xml version="1.0" ?>
+ 
        <widget xmlns= "http://www.w3.org/ns/widgets" xmlns:gap = "http://phonegap.com/ns/1.0" id="com.craftycuby" version="0.0.1">
         <name>Crafty cuby</name>
         <description>
@@ -19,4 +19,4 @@
         
          
          
- </widget>
+        </widget>
