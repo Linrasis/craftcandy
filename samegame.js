@@ -3,16 +3,20 @@ window.onload = (function() {
         HEIGHT = 530,
         BOX_WIDTH = 32,
         BOX_HEIGHT = 32,
-        BOARD_TOP = 50,
-        BOARD_LEFT = 0,
+        BOARD_TOP = 80,
+        BOARD_LEFT = 5,
         BOARD_ROWS = 14,
-        BOARD_COLS = 10,
+        BOARD_COLS = 11,
         TWEEN_FRAMES = 15,
         FONT = "24px sans-serif";
 
     var score = 0;
 
     Crafty.init(WIDTH, HEIGHT, 30);
+    /*
+     * Loads the Sprite PNG and create backround image and color
+     */
+    Crafty.background('url(img/screener.jpg) no-repeat center center');
 
     /*
      * Loads the Sprite PNG and create the only sprite 'crate' from it
@@ -72,21 +76,24 @@ window.onload = (function() {
             this.y = BOARD_TOP;
             this.w = BOX_WIDTH * BOARD_COLS;
             this.h = BOX_HEIGHT * BOARD_ROWS;
-            this.color("#000");
+            this.color("rgba(0, 0, 0, 0.1");
             this._setupBoard(BOARD_LEFT, BOARD_TOP, BOARD_ROWS, BOARD_COLS, BOX_WIDTH, BOX_HEIGHT);
-
+            /**
+         * Initialisation. Adds components, score label and points
+         */
             score = 0;
             this.scoreLabel = Crafty.e("2D, Canvas, SpriteText")
                                 .attr({x: BOARD_LEFT, y: BOARD_TOP - 30, w: 32 * 6, h: 32})
-                                .registerFont(FONT, 32, "img/OSDM_Fnt32x32_SyntaxTerror-Copy2.png")
+                                .registerFont(FONT, 32, "img/alpha_Fnt32x32_SyntaxTerror-Copy2.png")
                                 .text("Score: ");
             this.scoreEnt = Crafty.e("2D, Canvas, Color, SpriteText")
                                 .attr({x: BOARD_LEFT + this.scoreLabel.w, y: BOARD_TOP - 30,
                                        w: this.w - this.scoreLabel.w, h: 32})
                                 .font(FONT)
                                 .align("right")
-                                .color("#000")
+                                .color("rgba(0, 0, 0, 0.1")
                                 .text(score);
+            
         },
         /**
          * Set up the board.
@@ -179,6 +186,7 @@ window.onload = (function() {
          * @param aPos Array position of clicked Box
          * @param color color of clicked Box
          */
+        
         _flagConnectedBoxes: function(aPos, color) {
             function flagInternal(aPosList, board) {
                 if (_(aPosList).isEmpty()) return;
@@ -192,6 +200,9 @@ window.onload = (function() {
                         tail.push({ x: head.x, y: head.y + 1 });
                         tail.push({ x: head.x - 1, y: head.y});
                         tail.push({ x: head.x + 1, y: head.y});
+                        //adding audio from an object
+                        Crafty.audio.add("fuze","sound/fuze.mp3");
+                        Crafty.audio.play("fuze");
                     }
                 }
                 flagInternal(tail, board);
@@ -199,6 +210,7 @@ window.onload = (function() {
             flagInternal([aPos], this._board);
         }
     });
+    
 
     /*
      * We are using two Scenes:
@@ -209,6 +221,9 @@ window.onload = (function() {
     Crafty.scene("Game", function() {
         Crafty.e("Board");
     });
+    
+    
+
 
     /*
      * The PlayAgain scene looks pretty ugly, sorry. :)
@@ -219,28 +234,28 @@ window.onload = (function() {
             vcenter = BOARD_TOP + height / 2,
             bg = Crafty.e("2D, Canvas, Color, Mouse")
                 .attr({x: BOARD_LEFT, y: BOARD_TOP, w: width, h: height})
-                .color("#000");
+                .color("rgba(0, 0, 0, 0.1");
 
         Crafty.e("2D, Canvas, SpriteText")
                         .attr({x: BOARD_LEFT, y: vcenter - 90, w: width, h: 32})
-                        .registerFont(FONT, 32, "img/OSDM_Fnt32x32_SyntaxTerror-Copy2.png")
+                        .registerFont(FONT, 32, "img/alpha_Fnt32x32_SyntaxTerror-Copy2.png")
                         .align("center")
-                        .text("Your Score is");
+                        .text("Score");
         Crafty.e("2D, Canvas, SpriteText")
                         .attr({x: BOARD_LEFT, y: vcenter - 25, w: width, h: 32})
                         .font(FONT)
                         .align("center")
-                        .text(score);
+                        .text(score + "points");
         Crafty.e("2D, Canvas, SpriteText")
                         .attr({x: BOARD_LEFT, y: vcenter + 40, w: width, h: 32})
                         .font(FONT)
                         .align("center")
-                        .text("Click");
+                        .text("Clickez !");
         Crafty.e("2D, Canvas, SpriteText")
                         .attr({x: BOARD_LEFT, y: vcenter + 80, w: width, h: 32})
                         .font(FONT)
                         .align("center")
-                        .text("to Play Again!");
+                        .text("pour rejouer!");
 
         bg.bind("Click", function() {
             Crafty.scene("Game");
@@ -249,7 +264,7 @@ window.onload = (function() {
 
     // Load assets, then start Game
     Crafty.scene("Loading", function() {
-        Crafty.load(["img/crate.png", "img/OSDM_Fnt32x32_SyntaxTerror-Copy2.png"], function() {
+        Crafty.load(["img/crate.png", "img/alpha_Fnt32x32_SyntaxTerror-Copy2.png"], function() {
             Crafty.scene("Game");
         });
     });
