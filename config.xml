@@ -11,7 +11,7 @@
         <access origin="*" />
         <splash src="img/default.png" />
         <icon src="img/icon.png" platform="ios" width="57" height="57" density="mdpi" />
-        <icon src="img/icon-72.png" platform="android" />
+        <icon src="img/icon-72.png" />
         <preference name="Fullscreen" value="true" />
         <preference name="Orientation" value="landscape" />
         <preference name="BackgroundColor" value="0xff0000ff"/>
