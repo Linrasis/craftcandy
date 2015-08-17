@@ -9,7 +9,7 @@
         </author>
         <content src="index.html" />
         <access origin="*" />
-        <icon src="img/icon-72.png" />
+        <gap:icon src="icon.png"  gap:platform="android" />
         
         <gap:splash src="img/default.png" gap:platform="android" />
     
