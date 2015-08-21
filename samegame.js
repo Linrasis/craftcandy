@@ -78,6 +78,9 @@ window.onload = (function() {
             this.h = BOX_HEIGHT * BOARD_ROWS;
             this.color("rgba(0, 0, 0, 0.1");
             this._setupBoard(BOARD_LEFT, BOARD_TOP, BOARD_ROWS, BOARD_COLS, BOX_WIDTH, BOX_HEIGHT);
+            //adding audio from an object
+                        Crafty.audio.add("go","sound/go.wav");
+                        Crafty.audio.play("go");
             /**
          * Initialisation. Adds components, score label and points
          */
@@ -201,8 +204,8 @@ window.onload = (function() {
                         tail.push({ x: head.x - 1, y: head.y});
                         tail.push({ x: head.x + 1, y: head.y});
                         //adding audio from an object
-                        Crafty.audio.add("fuze","sound/fuze.mp3");
-                        Crafty.audio.play("fuze");
+                        Crafty.audio.add("point","sound/point.wav");
+                        Crafty.audio.play("point");
                     }
                 }
                 flagInternal(tail, board);
@@ -220,6 +223,7 @@ window.onload = (function() {
      */
     Crafty.scene("Game", function() {
         Crafty.e("Board");
+        
     });
     
     
@@ -235,7 +239,9 @@ window.onload = (function() {
             bg = Crafty.e("2D, Canvas, Color, Mouse")
                 .attr({x: BOARD_LEFT, y: BOARD_TOP, w: width, h: height})
                 .color("rgba(0, 0, 0, 0.1");
-
+            //adding audio from an object
+                        Crafty.audio.add("final","sound/final.wav");
+                        Crafty.audio.play("final");
         Crafty.e("2D, Canvas, SpriteText")
                         .attr({x: BOARD_LEFT, y: vcenter - 90, w: width, h: 32})
                         .registerFont(FONT, 32, "img/alpha_Fnt32x32_SyntaxTerror-Copy2.png")
@@ -259,6 +265,7 @@ window.onload = (function() {
 
         bg.bind("Click", function() {
             Crafty.scene("Game");
+                
         });
     });
 
